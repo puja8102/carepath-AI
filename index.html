@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CarePath AI - Smart Patient Care and Blood Connect Platform">
+  <title>CarePath AI | Smart Patient Care</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar">
+    <a class="brand" href="#dashboard">
+      <span class="brand-mark">✚</span>
+      <span><strong>CarePath <em>AI</em></strong><small>SMART PATIENT CARE</small></span>
+    </a>
+    <p class="menu-caption">WORKSPACE</p>
+    <nav class="side-nav">
+      <a class="nav-link active" href="#dashboard"><span>▦</span> Dashboard</a>
+      <a class="nav-link" href="#documents"><span>▤</span> Medical Documents</a>
+      <a class="nav-link" href="#medicines"><span>✚</span> Medicine Inventory</a>
+      <a class="nav-link" href="#blood-bank"><span>♥</span> Blood Availability</a>
+      <a class="nav-link" href="#donors"><span>♧</span> Donor Registration</a>
+      <a class="nav-link" href="#requests"><span>⇄</span> Blood Requests</a>
+      <a class="nav-link" href="#assistant"><span>✧</span> AI Assistant</a>
+      <a class="nav-link" href="#timeline"><span>◷</span> Health Timeline</a>
+    </nav>
+    <div class="sidebar-note">
+      <span class="note-icon">i</span>
+      <strong>CarePath Demo</strong>
+      <p>Use fictional information only. This prototype is not connected to hospitals or blood banks.</p>
+    </div>
+    <div class="sidebar-footer"><span class="online-dot"></span> Demo environment</div>
+  </aside>
+
+  <main class="main-content">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">PATIENT CARE PLATFORM</p>
+        <h1>Care Dashboard</h1>
+      </div>
+      <div class="topbar-actions">
+        <span class="demo-pill"><span class="online-dot"></span> Demo mode</span>
+        <div class="avatar" aria-label="Demo profile">P</div>
+      </div>
+    </header>
+
+    <section id="dashboard" class="hero">
+      <div class="hero-copy">
+        <span class="eyebrow light">WELCOME TO CAREPATH AI</span>
+        <h2>Your health journey,<br><span>organized smarter.</span></h2>
+        <p>Organize medical documents, track medicine stock, and explore blood availability in one patient-care workspace.</p>
+        <a class="button button-primary" href="#documents">Explore your workspace <span>→</span></a>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="hero-ring"><span>✚</span></div>
+        <div class="hero-chip">Smart Patient Care</div>
+      </div>
+    </section>
+
+    <section class="section-block">
+      <div class="section-heading">
+        <div><span class="eyebrow">AT A GLANCE</span><h2>Your Overview</h2><p>A quick summary of this demo workspace.</p></div>
+      </div>
+      <div class="stats-grid">
+        <article class="stat-card"><span class="stat-symbol blue">▤</span><p>Documents</p><strong id="documentCount">0</strong><small>Added in this session</small></article>
+        <article class="stat-card"><span class="stat-symbol green">✚</span><p>Medicine Items</p><strong id="medicineCount">0</strong><small>Inventory entries</small></article>
+        <article class="stat-card"><span class="stat-symbol red">♥</span><p>Blood Units</p><strong id="bloodUnitCount">0</strong><small>Sample stock only</small></article>
+        <article class="stat-card"><span class="stat-symbol purple">⇄</span><p>Blood Requests</p><strong id="requestCount">0</strong><small>Submitted in this session</small></article>
+      </div>
+    </section>
+
+    <section id="documents" class="section-block">
+      <div class="section-heading"><div><span class="eyebrow">DOCUMENT INTELLIGENCE</span><h2>AI Medical Document Reader</h2><p>Add a report to the demo and prepare it for future AI analysis.</p></div></div>
+      <div class="panel upload-layout">
+        <div class="upload-illustration">▤</div>
+        <div class="upload-content">
+          <h3>Upload a medical document</h3>
+          <p>Upload a text-based PDF to extract its readable text through the CarePath AI backend. Image OCR will be added in a later step.</p>
+          <label class="button button-primary file-button" for="fileInput">Choose PDF document</label>
+          <input id="fileInput" type="file" accept=".pdf,application/pdf">
+          <span class="field-hint">Maximum file size: 10 MB · Use fictional/sample records only</span>
+          <p id="uploadStatus" class="field-hint" role="status" aria-live="polite"></p>
+          <div id="documentResult" class="record-list" hidden></div>
+          <div id="documentList" class="record-list"><p class="empty-state">No documents added in this session.</p></div>
+        </div>
+      </div>
+      <div class="info-strip"><strong>PDF text extraction is connected.</strong> This demo extracts selectable text from PDFs. Scanned PDFs need OCR, and AI explanations are not enabled yet. Do not upload real patient records to this demo.</div>
+    </section>
+
+    <section id="medicines" class="section-block">
+      <div class="section-heading"><div><span class="eyebrow">STOCK TRACKING</span><h2>Medicine Inventory</h2><p>Record medicine quantities and monitor expiry dates.</p></div></div>
+      <div class="panel">
+        <form id="medicineForm" class="form-grid">
+          <div class="form-field"><label for="medicineName">Medicine name</label><input id="medicineName" type="text" placeholder="e.g. Sample medicine" required maxlength="60"></div>
+          <div class="form-field"><label for="medicineQuantity">Quantity</label><input id="medicineQuantity" type="number" min="0" max="100000" placeholder="e.g. 10" required></div>
+          <div class="form-field"><label for="medicineExpiry">Expiry date</label><input id="medicineExpiry" type="date"></div>
+          <button class="button button-primary form-submit" type="submit">＋ Add item</button>
+        </form>
+        <div class="table-wrap">
+          <table><thead><tr><th>Medicine</th><th>Quantity</th><th>Expiry</th><th>Stock status</th><th>Action</th></tr></thead><tbody id="medicineList"><tr><td colspan="5" class="empty-cell">No medicine entries yet.</td></tr></tbody></table>
+        </div>
+        <p class="field-hint">This is an organizer only. Follow the prescribing clinician's instructions; the app does not recommend medicines or doses.</p>
+      </div>
+    </section>
+
+    <section id="blood-bank" class="section-block">
+      <div class="section-heading"><div><span class="eyebrow">BLOOD CONNECT</span><h2>Blood Availability</h2><p>Explore fictional sample stock by blood group.</p></div><span class="demo-label">SAMPLE DATA</span></div>
+      <div class="warning-strip">Demo figures only — not live blood-bank inventory. Always confirm availability and compatibility directly with a licensed blood bank and clinical team.</div>
+      <div id="bloodGrid" class="blood-grid"></div>
+      <div class="panel stock-panel">
+        <h3>Update sample blood-bank stock</h3>
+        <form id="bloodForm" class="form-grid compact-form">
+          <div class="form-field">
+            <label for="bloodGroup">Blood group</label>
+            <select id="bloodGroup" required>
+              <option value="">Select group</option>
+              <option value="A+">A+</option>
+              <option value="A-">A-</option>
+              <option value="B+">B+</option>
+              <option value="B-">B-</option>
+              <option value="AB+">AB+</option>
+              <option value="AB-">AB-</option>
+              <option value="O+">O+</option>
+              <option value="O-">O-</option>
+            </select>
+          </div>
+          <div class="form-field"><label for="bloodUnits">Units available</label><input id="bloodUnits" type="number" min="0" max="10000" placeholder="Enter units" required></div>
+          <button class="button button-secondary form-submit" type="submit">Update demo stock</button>
+        </form>
+      </div>
+    </section>
+
+    <section id="donors" class="section-block">
+      <div class="section-heading"><div><span class="eyebrow">COMMUNITY SUPPORT</span><h2>Adult Donor Registration</h2><p>A registration interface for eligible adults, subject to blood-bank screening.</p></div></div>
+      <div class="panel">
+        <div class="warning-strip">Blood donation registration is for adults aged 18 or older only. Registration does not confirm medical eligibility or guarantee a donation. A licensed blood bank must assess eligibility.</div>
+        <form id="donorForm" class="form-grid">
+          <div class="form-field"><label for="donorName">Full name</label><input id="donorName" type="text" placeholder="Enter full name" required maxlength="70"></div>
+          <div class="form-field"><label for="donorAge">Age</label><input id="donorAge" type="number" min="1" max="120" placeholder="18 or above" required></div>
+          <div class="form-field"><label for="donorGroup">Blood group</label><select id="donorGroup" required><option value="">Select group</option><option value="A+">A+</option><option value="A-">A-</option><option value="B+">B+</option><option value="B-">B-</option><option value="AB+">AB+</option><option value="AB-">AB-</option><option value="O+">O+</option><option value="O-">O-</option></select></div>
+          <div class="form-field"><label for="donorCity">City</label><input id="donorCity" type="text" placeholder="Enter city" required maxlength="60"></div>
+          <div class="form-field full-width"><label class="checkbox-label"><input id="donorConsent" type="checkbox" required> I am 18 or older and consent to this demo registration. I understand that a blood bank must verify eligibility.</label></div>
+          <button class="button button-primary form-submit" type="submit">Submit adult registration</button>
+        </form>
+        <div id="donorList" class="record-list"><p class="empty-state">No adult donor registrations in this session.</p></div>
+      </div>
+    </section>
+
+    <section id="requests" class="section-block">
+      <div class="section-heading"><div><span class="eyebrow">REQUEST MANAGEMENT</span><h2>Blood Requests</h2><p>Submit a demo request for review by an authorized blood bank.</p></div></div>
+      <div class="panel">
+        <form id="requestForm" class="form-grid">
+          <div class="form-field"><label for="requesterName">Patient / caregiver name</label><input id="requesterName" type="text" placeholder="Enter name" required maxlength="70"></div>
+          <div class="form-field"><label for="requestGroup">Required blood group</label><select id="requestGroup" required><option value="">Select group</option><option value="A+">A+</option><option value="A-">A-</option><option value="B+">B+</option><option value="B-">B-</option><option value="AB+">AB+</option><option value="AB-">AB-</option><option value="O+">O+</option><option value="O-">O-</option></select></div>
+          <div class="form-field"><label for="requestUnits">Units requested</label><input id="requestUnits" type="number" min="1" max="20" placeholder="Number of units" required></div>
+          <div class="form-field"><label for="requestHospital">Hospital / blood bank</label><input id="requestHospital" type="text" placeholder="Enter facility name" required maxlength="100"></div>
+          <div class="form-field full-width"><label for="requestCity">City</label><input id="requestCity" type="text" placeholder="Enter city" required maxlength="60"></div>
+          <div class="form-field full-width"><label class="checkbox-label"><input id="requestConsent" type="checkbox" required> I confirm this is a demo request and understand that real requests must be verified with a licensed blood bank.</label></div>
+          <button class="button button-primary form-submit" type="submit">Submit demo request</button>
+        </form>
+        <div class="table-wrap">
+          <table><thead><tr><th>Request</th><th>Blood group</th><th>Units</th><th>Facility / City</th><th>Status</th></tr></thead><tbody id="requestList"><tr><td colspan="5" class="empty-cell">No requests submitted yet.</td></tr></tbody></table>
+        </div>
+      </div>
+    </section>
+
+    <section id="assistant" class="section-block">
+      <div class="section-heading"><div><span class="eyebrow">AI SUPPORT</span><h2>CarePath AI Assistant</h2><p>Preview of the assistant interface. Responses below are scripted demo replies.</p></div></div>
+      <div class="panel chat-panel">
+        <div class="chat-heading"><span class="assistant-icon">✧</span><div><strong>CarePath Assistant</strong><small><span class="online-dot"></span> Frontend demo</small></div></div>
+        <div id="chatMessages" class="chat-messages"><div class="chat-bubble assistant-bubble">Hello! I can demonstrate how CarePath AI may help organize documents and care records. I cannot diagnose, prescribe, or confirm blood availability.</div></div>
+        <form id="chatForm" class="chat-form"><input id="chatInput" type="text" placeholder="Ask about organizing your records..." maxlength="300" required><button class="button button-primary" type="submit">Send →</button></form>
+        <p class="field-hint chat-note">This is a scripted demo assistant. Do not enter personal health information here.</p>
+      </div>
+    </section>
+
+    <section id="timeline" class="section-block">
+      <div class="section-heading"><div><span class="eyebrow">ACTIVITY HISTORY</span><h2>Health Timeline</h2><p>Recent actions performed during this browser session.</p></div></div>
+      <div class="panel"><div id="timelineList" class="timeline-list"><p class="empty-state">Your demo activities will appear here.</p></div></div>
+    </section>
+
+    <section class="government-banner">
+      <div class="gov-symbol">🏥</div>
+      <div class="gov-copy"><span class="eyebrow">GOVERNMENT HEALTH SERVICE</span><h3>ABHA Health Account</h3><p>Visit India's official digital health account portal.</p></div>
+      <a class="button button-secondary" href="https://abha.abdm.gov.in/abha/v3/" target="_blank" rel="noopener noreferrer">Visit ABHA Portal ↗</a>
+    </section>
+
+    <footer class="site-footer">
+      <div class="footer-intro">
+        <h3>Designed &amp; Engineered with Care by Pritam Kumari</h3>
+        <p>CarePath AI is an educational healthcare assistance prototype designed to organize documents, medicine inventory and demo blood-connect information.</p>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-brand"><h3>✚ CarePath AI</h3><p>Smart Patient Care Platform</p><p>Care Better</p></div>
+        <div class="footer-center"><h3>Stay Informed.</h3><h3>Stay Healthy.</h3></div>
+        <div class="footer-right"><p>Educational prototype — Not a medical diagnosis or treatment service.</p><p>© 2026 CarePath AI. All Rights Reserved.</p></div>
+      </div>
+    </footer>
+  </main>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
